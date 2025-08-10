@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -8,9 +9,11 @@ export default function LandingPage() {
         <CardContent className="p-10 text-center">
           <h1 className="text-5xl font-extrabold text-center">
             <span className="bg-gradient-to-r from-cyan-300 via-cyan-500 to-cyan-700 text-transparent bg-clip-text">
-            QuickVid
-            </span>{' '}
-            <span className="bg-gradient-to-r from-gray-300 via-gray-100 to-white text-transparent bg-clip-text">AI</span>
+              QuickVid
+            </span>{" "}
+            <span className="bg-gradient-to-r from-gray-300 via-gray-100 to-white text-transparent bg-clip-text">
+              AI
+            </span>
           </h1>
 
           <p className="text-white/80 text-lg mb-10">
@@ -18,8 +21,11 @@ export default function LandingPage() {
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <Button className="bg-gradient-to-r from-cyan-400 to-cyan-700 text-[#FFFAFA] px-6 py-3 rounded-full font-semibold shadow-md hover:scale-105 transition-transform">
-              🚀 Generate a Short
+            <Button
+              asChild
+              className="bg-gradient-to-r from-cyan-400 to-cyan-700 text-[#FFFAFA] px-6 py-3 rounded-full font-semibold shadow-md hover:scale-105 transition-transform"
+            >
+              <Link href="/dashboard">🚀 Generate a Short</Link>
             </Button>
 
             <Button

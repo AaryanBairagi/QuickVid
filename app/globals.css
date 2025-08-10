@@ -112,6 +112,67 @@
   --sidebar-ring: oklch(0.553 0.013 58.071);
 }
 
+/* Clerk UserProfile custom styles */
+
+.clerk-profile-root {
+  background-color: transparent !important;
+  color: var(--foreground) !important; /* Use your theme foreground */
+}
+
+.clerk-profile-root input,
+.clerk-profile-root textarea {
+  background-color: var(--sidebar) !important; /* dark input bg */
+  color: var(--sidebar-foreground) !important; /* input text */
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  padding: 0.5rem 1rem !important;
+  transition: border-color 0.3s ease;
+}
+
+.clerk-profile-root input::placeholder,
+.clerk-profile-root textarea::placeholder {
+  color: var(--muted-foreground) !important;
+}
+
+.clerk-profile-root input:focus,
+.clerk-profile-root textarea:focus {
+  outline: none !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 5px var(--primary) !important;
+  background-color: var(--sidebar) !important;
+  color: var(--sidebar-foreground) !important;
+}
+
+.clerk-profile-root button {
+  background-color: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+  border-radius: var(--radius) !important;
+  padding: 0.6rem 1.2rem !important;
+  font-weight: 600 !important;
+  transition: background-color 0.3s ease;
+  border: none !important;
+  cursor: pointer !important;
+}
+
+.clerk-profile-root button:hover {
+  background-color: var(--primary-foreground) !important;
+  color: var(--primary) !important;
+  box-shadow: 0 0 10px var(--primary) !important;
+}
+
+/* Scrollbars to match dark theme */
+.clerk-profile-root ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.clerk-profile-root ::-webkit-scrollbar-thumb {
+  background-color: var(--muted);
+  border-radius: 8px;
+}
+
+
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

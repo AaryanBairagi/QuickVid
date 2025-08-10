@@ -6,14 +6,25 @@ export default function Page() {
     <div className="min-h-screen bg-gradient-to-br from-[#0d0d0d] via-[#1a1a1a] to-[#0f0f0f] flex items-center justify-center px-4 py-10">
       <div className="relative flex flex-col md:flex-row w-full max-w-5xl rounded-3xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.3)] border border-white/10">
         
-        {/* Floating header */}
-        <h2 className="absolute top-8 left-1/2 -translate-x-1/2 text-4xl font-bold z-20 text-center">
-          <span className="bg-gradient-to-r from-cyan-500 to-cyan-700 text-transparent bg-clip-text">
-            Sign Up
-          </span>
-          <span className="text-gray-900"> for QuickVid</span>
-        </h2>
+        {/* Floating header */} 
 
+        {/* <h1 className="absolute top-8 left-1/2 -translate-x-1/2 text-4xl font-bold z-20 text-center">
+          <span className="bg-gradient-to-r from-cyan-500 to-cyan-700 text-transparent bg-clip-text">
+            Welcome
+          </span>
+          <span className="text-gray-900"> to QuickVid</span>
+        </h1> */}
+<h1
+  className="absolute top-8 left-1/2 -translate-x-1/2 text-4xl font-bold z-20 text-center"
+  style={{
+    textShadow: "2px 2px 6px rgba(0, 0, 0, 0.4)", // soft shadow
+  }}
+>
+  <span className="bg-gradient-to-r from-cyan-500 to-cyan-700 text-transparent bg-clip-text">
+    Welcome
+  </span>
+  <span className="text-gray-900"> to QuickVid. </span>
+</h1>
         {/* Left side image */}
         <div className="relative w-full md:w-1/2 hidden md:block">
           <Image
@@ -25,7 +36,7 @@ export default function Page() {
         </div>
 
         {/* Right side form */}
-        <div className="flex items-center justify-center w-full md:w-1/2 p-8 bg-[#f5f4f0]">
+        <div className="flex items-center justify-center w-full md:w-1/2 p-8 bg-[#ffffff]">
           <div className="w-full max-w-lg mt-20"> {/* mt-20 pushes form down so header floats above */}
             <SignUp
               appearance={{
