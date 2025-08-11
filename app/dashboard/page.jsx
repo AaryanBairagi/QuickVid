@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "../../components/ui/button";
 import EmptyState from "./_components/EmptyState";
 import Link from "next/link";
 import { Sparkles } from "lucide-react";

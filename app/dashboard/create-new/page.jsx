@@ -3,8 +3,8 @@ import React, { useState, useContext, useEffect } from 'react';
 import SelectTopic from './_components/SelectTopic';
 import SelectStyle from './_components/SelectStyle';
 import Duration from './_components/Duration';
-import { Button } from '@/components/ui/button';
-// import axios from 'axios';
+import { Button } from '../../../components/ui/button';
+import axios from 'axios';
 // import { storage } from '@/configs/FireBaseConfig';
 // import { v4 as uuidv4 } from 'uuid';
 import CustomLoading from './_components/CustomLoading';
@@ -22,13 +22,66 @@ const CreateNew = () => {
 //   const [isGeneratingVideo, setIsGeneratingVideo] = useState(false);
 
   const onHandleInputChange = (fieldName, fieldValue) => {
-    console.log("Updating form data:", fieldName, fieldValue);
-    setFormData(prev => ({ ...prev, [fieldName]: fieldValue }));
+      console.log("Updating form data:", fieldName, fieldValue);
+      setFormData(prev => ({ ...prev, [fieldName]: fieldValue }));
   }
 
-  const onCreateClickHandler = () => {
-      // GetVideoScript();
+
+  const getVideoScript = async () => {
+    const { topic, imageStyle, duration } = formdata; 
+    if(!topic || !imageStyle || !duration){
+        alert("Missing required fields. Please select topic, style and duration first.");
+        return;
+      }
+    console.log("Final form data before API call:", formdata);
+  
+  try {
+    const res = await axios.post("/api/get-video-script", formdata);
+    console.log("API Response:", res.data);
+  } catch (error) {
+    console.error("Error calling API:", error);
+    alert('Could not generate the script');
   }
+};
+
+const onCreateClickHandler = async () => {
+  await getVideoScript();
+};
+
+return (
+    <div className='md:px-20'>
+            <div className='shadow-md p-10'>
+              <SelectTopic onUserSelect={onHandleInputChange} />
+              <SelectStyle onUserSelect={onHandleInputChange} />
+              <Duration onUserSelect={onHandleInputChange} />
+              <Button className="mt-10 bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-400 hover:to-purple-400
+                text-white font-semibold px-6 py-3 rounded-lg shadow-[0_0_15px_rgba(34,211,238,0.7)] hover:shadow-[0_0_25px_rgba(34,211,238,0.9)] transition-all duration-300"
+                onClick={onCreateClickHandler}>
+                  🚀 Create Short Video
+              </Button>
+            </div>
+            <CustomLoading loading={false} />
+
+
+    </div>
+  )
+}
+
+export default CreateNew
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //   const GetVideoScript = async () => {
 //     try {
@@ -50,11 +103,11 @@ const CreateNew = () => {
 //     }
   
 //     const prompt = `Write a video script for a short ${duration} video on the topic "${topic}". The video should follow a "${imageStyle}" style. Break the video down into multiple scenes. 
-//     For each scene, provide the following in JSON format:
-//   - imagePrompt: A visual prompt to generate a realistic AI image for the scene
-//   - contentText: The narration or content for that scene.
+  //   For each scene, provide the following in JSON format:
+  // - imagePrompt: A visual prompt to generate a realistic AI image for the scene
+  // - contentText: The narration or content for that scene.
   
-//       Make the tone engaging and visually descriptive. Output only a JSON array of scenes`;
+  //     Make the tone engaging and visually descriptive. Output only a JSON array of scenes`;
 
 //       console.log("Sending request to API...");
 //       const response = await axios.post('/api/get-video-script', {
@@ -206,15 +259,23 @@ const CreateNew = () => {
 //     console.log("Video data updated:", videoData);
 //   }, [videoData]);
 
-return (
-    <div className='md:px-20'>
-            <div className='shadow-md p-10'>
-              <SelectTopic onUserSelect={onHandleInputChange} />
-              <SelectStyle onUserSelect={onHandleInputChange} />
-              <Duration onUserSelect={onHandleInputChange} />
-              <Button className='mt-10' onClick={onCreateClickHandler}>Create Short Video</Button>
-            </div>
-            <CustomLoading loading={false} />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////----------------------------------------//////////////////////////
+
 
       {/* Video Preview Section
       {videoData && videoData.imageList && videoData.imageList.length > 0 && (
@@ -260,19 +321,18 @@ return (
               )}
             </div>
           )} */}
-
-          {/* Generate Final Video Button */}
+{/* 
+          Generate Final Video Button */}
           {/* {!videoUrl && videoData.imageList && videoData.audioFileUrl && (
             <div className="mt-4 flex justify-center">
               <Button 
                 onClick={GenerateFinalVideo}
                 disabled={isGeneratingVideo}
-                className="bg-cyan-500 hover:bg-cyan-600 text-white"
-              >
+                className="bg-cyan-500 hover:bg-cyan-600 text-white">
                 {isGeneratingVideo ? 'Generating Video...' : 'Generate Final Video'}
-              </Button>
-            </div>
-          )} */}
+                </Button>
+              </div>
+          {/* // )} */} 
 
           {/* Captions */}
           {/* {videoData.captions && videoData.captions.length > 0 && (
@@ -308,8 +368,3 @@ return (
           )}
         </div>
       )} */}
-    </div>
-  )
-}
-
-export default CreateNew

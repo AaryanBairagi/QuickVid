@@ -1,12 +1,12 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
+import { Switch } from "../../../components/ui/switch";
+import { Label } from "../../../components/ui/label";
 import { useUser } from "@clerk/nextjs";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
+import { Button } from "../../../components/ui/button";
 
 export default function SettingsPage() {
     const { user } = useUser();

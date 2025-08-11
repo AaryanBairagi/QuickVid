@@ -28,7 +28,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "app/api/get-video-script/route.js"  ],
   "exclude": [
     "node_modules"
   ]

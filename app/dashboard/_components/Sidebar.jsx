@@ -1,11 +1,11 @@
 "use client";
 import { usePathname, useRouter } from "next/navigation";
-import { cn } from "@/lib/utils";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { cn } from "../../../lib/utils";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../../../components/ui/tooltip";
 import { Home, Video, Settings, CreditCard, User, Wand2 } from "lucide-react";
 import { useUser } from "@clerk/nextjs";
-import { Separator } from "@/components/ui/separator";
-import { ModeToggle } from "@/components/global/mode-toggle";
+import { Separator } from "../../../components/ui/separator";
+import { ModeToggle } from "../../../components/global/mode-toggle";
 import Link from "next/link";
 
 const SideBar = () => {

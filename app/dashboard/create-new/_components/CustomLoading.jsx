@@ -1,4 +1,4 @@
-import { AlertDialog, AlertDialogContent, AlertDialogDescription, AlertDialogTitle } from '@/components/ui/alert-dialog';
+import { AlertDialog, AlertDialogContent, AlertDialogDescription, AlertDialogTitle } from '../../../../components/ui/alert-dialog';
 import React from 'react';
 
 const CustomLoading = ({ loading }) => {

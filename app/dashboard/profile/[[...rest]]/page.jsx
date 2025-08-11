@@ -1,6 +1,6 @@
 import React from "react";
 import { UserProfile } from "@clerk/nextjs";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "../../../../components/ui/card";
 
 export default function UserProfilePage() {
 return (

@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useUser } from '@clerk/nextjs';
 import { eq } from 'drizzle-orm'; 
 import { Users } from '../configs/schema';
-import { db } from '@/configs/db';
+import { db } from '../configs/db';
 
 const Provider = ({children}) => {
 
