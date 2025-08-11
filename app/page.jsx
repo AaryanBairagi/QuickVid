@@ -32,7 +32,7 @@ export default function LandingPage() {
               variant="ghost"
               className="text-white/70 transition-all hover:underline hover:text-black hover:decoration-cyan-200 hover:decoration-2"
             >
-              Learn More →
+              <Link href="/learn-more">Learn More →</Link>
             </Button>
           </div>
         </CardContent>
