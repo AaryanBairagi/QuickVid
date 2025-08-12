@@ -9,17 +9,17 @@ return (
         <h2 className="text-lg text-white/50 hover:text-white/80">
             You don't have any short videos yet.
         </h2>
-        <Link href="/dashboard/create-short">
-        <button
+        <Link href="/dashboard/create-new">
+            <button
             className="flex items-center gap-2 px-5 py-2 rounded-full 
                 bg-gradient-to-r from-purple-500 via-cyan-500 to-blue-500 
                 text-white font-semibold shadow-lg
                 hover:shadow-[0_0_15px_rgba(168,85,247,0.7)]
                 transition-all duration-300" >
-        <Sparkles className="w-4 h-4 animate-pulse" />
-        Create Short Video
-        </button>
-    </Link>
+            <Sparkles className="w-4 h-4 animate-pulse" />
+            Create Short Video
+            </button>
+        </Link>
     </div>
 );
 };

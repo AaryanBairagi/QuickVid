@@ -20,7 +20,7 @@ const CreateNew = () => {
   };
 
   //Function that handles Caption generation needs audio url which is recieved from firebase
-  const getCaptionFile = async (audioUrl) => {
+  const getCaptionFile = async (audioUrl , sceneIndex) => {
     console.log(`Fetching captions for scene ${sceneIndex + 1} →`, audioUrl);
     try {
       const { data } = await axios.post("/api/get-caption-file", { audioUrl });
@@ -28,7 +28,7 @@ const CreateNew = () => {
       console.log(`Received captions for scene ${sceneIndex + 1}:`, data.captions);
       return data.captions || [];
     } catch (error) {
-      console.error("Error getting captions:", error);
+      console.error(`Error getting captions for scene ${sceneIndex + 1}:`, error);      
       return [];
     }
   };
@@ -54,7 +54,7 @@ const CreateNew = () => {
 
         const audioBase64 = audioResults[i]?.audioContent || null;
 
-        const captions = audioUrl ? await getCaptionFile(audioUrl) : [];
+        const captions = audioUrl ? await getCaptionFile(audioUrl,i) : [];
 
         updatedScenes.push({
           ...scene,
