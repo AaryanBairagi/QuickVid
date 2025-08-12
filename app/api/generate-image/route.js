@@ -2,12 +2,35 @@ import { NextResponse } from "next/server";
 import { storage } from "../../../configs/FireBase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
+
+function sanitizePrompt(prompt){
+    const bannedWords = [
+        /blood/gi,
+        /kill/gi,
+        /weapon/gi,
+        /nude/gi,
+        /sex/gi,
+        /gun/gi,
+        /murder/gi
+    ];
+
+    let safePrompt = prompt;
+    bannedWords.forEach(banWord =>{
+        safePrompt = safePrompt.replace(banWord,"safe");
+    });
+
+    return safePrompt;
+}
+
 export async function POST(req) {
 try {
-    const { prompt } = await req.json();
+    let { prompt } = await req.json();
     if (!prompt?.trim()) {
         return NextResponse.json({ error: "Prompt is required" }, { status: 400 });
     }
+
+    //Sanitize the prompt to avoid deepai sensitivity error
+    prompt = sanitizePrompt(prompt);
 
     const deepAiKey = process.env.NEXT_DEEPAI_API_KEY;
     if (!deepAiKey) {

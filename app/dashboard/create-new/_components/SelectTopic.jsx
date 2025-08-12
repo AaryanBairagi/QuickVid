@@ -112,7 +112,7 @@ const SelectTopic = ({ onUserSelect }) => {
           "
           value={customPrompt}
           onChange={handleCustomPromptChange}
-          placeholder="Got an idea? Let's turn it into a video!"
+          placeholder="Got an idea? Let's turn it into a video!  NOTE: Please do not use sensitive or explicit words."
           rows={4}
         />
       )}
