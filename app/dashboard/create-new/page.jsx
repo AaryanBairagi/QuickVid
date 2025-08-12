@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import SelectTopic from "./_components/SelectTopic";
 import SelectStyle from "./_components/SelectStyle";
 import Duration from "./_components/Duration";
@@ -22,7 +22,7 @@ const CreateNew = () => {
 
   const generateSceneImage = async(prompt,sceneIndex) => {
     try{
-      const { data } = await axios.post("api/generate-image" , {prompt});
+      const { data } = await axios.post("/api/generate-image" , {prompt});
       if(data.error) throw new Error(data.error);
       console.log(`Generated image for scene ${sceneIndex+1}:`, data.imageUrl);
       return data.imageUrl;
@@ -115,6 +115,8 @@ const CreateNew = () => {
       setLoading(false);
     }
   };
+
+  
 
   return (
     <div className="md:px-20">

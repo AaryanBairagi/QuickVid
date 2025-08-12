@@ -153,30 +153,48 @@ return (
                 <div className="space-y-2">
                     <Label>Default Video Quality</Label>
                     <select
-                    className="w-full p-2 border rounded-md bg-black/30 text-white"
+                    className="w-full p-2 rounded-xl
+                    bg-gradient-to-r from-[#15192c] via-[#21243b] to-[#134e5e]/60
+                    text-white text-base shadow-md outline-none
+                    border border-cyan-500/30
+                    focus:ring-2 focus:ring-cyan-400
+                    transition-all duration-200
+                    placeholder:text-slate-300
+                    hover:border-cyan-400
+                    focus:border-cyan-400
+                    backdrop-blur"
                     value={settings.videoQuality}
                     onChange={(e) =>
                         handleSettingChange("videoQuality", e.target.value)
                     }
                     disabled={saving} >
-                        <option value="low">Low (480p)</option>
-                        <option value="medium">Medium (720p)</option>
-                        <option value="high">High (1080p)</option>
+                        <option value="low" className="bg-[#181f39] text-white">Low (480p)</option>
+                        <option value="medium" className="bg-[#181f39] text-white">Medium (720p)</option>
+                        <option value="high" className="bg-[#181f39] text-white">High (1080p)</option>
                     </select>
                 </div>
                 <div className="space-y-2">
                     <Label>Default Export Format</Label>
                     <select
-                    className="w-full p-2 border rounded-md bg-black/30 text-white"
+                    className="w-full p-2 rounded-xl
+                    bg-gradient-to-r from-[#15192c] via-[#21243b] to-[#134e5e]/60
+                    text-white text-base shadow-md outline-none
+                    border border-cyan-500/30
+                    focus:ring-2 focus:ring-cyan-400
+                    transition-all duration-200
+                    placeholder:text-slate-300
+                    hover:border-cyan-400
+                    focus:border-cyan-400
+                    backdrop-blur"
                     value={settings.exportFormat}
                     onChange={(e) =>
                         handleSettingChange("exportFormat", e.target.value)
                     }
                     disabled={saving}
                     >
-                        <option value="mp4">MP4</option>
-                        <option value="mov">MOV</option>
-                        <option value="webm">WebM</option>
+                        <option value="mp4" className="bg-[#181f39] text-white">MP4</option>
+                        <option value="mov" className="bg-[#181f39] text-white">MOV</option>
+                        <option value="webm" className="bg-[#181f39] text-white">WebM</option>
                     </select>
                 </div>
             </>

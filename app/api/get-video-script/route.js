@@ -12,11 +12,18 @@ export async function POST(req) {
         );
     }
 
-    const prompt = `Write a video script for a short ${duration} video on the topic "${topic}". The video should follow a "${imageStyle}" style. Break the video down into multiple scenes.
-For each scene, provide the following in JSON format:
-- imagePrompt: A visual prompt to generate a realistic AI image for the scene
-- contentText: The narration or content for that scene.
-Make the tone engaging and visually descriptive. Output ONLY a JSON array of scenes.`;
+const prompt = `Write a video script for a short ${duration} video on the topic "${topic}".
+                The video should follow a "${imageStyle}" style. Break the video down into multiple scenes.
+                For each scene, provide the following in JSON format:
+                - imagePrompt: A visual prompt to generate a realistic AI image for the scene. 
+                IMPORTANT: The image prompt must be 100% safe for AI generation:
+                • No sexual, violent, gory, hateful, or unsafe content.
+                • Use neutral and family-friendly language.
+                • Replace unsafe concepts with safe, artistic alternatives.
+                - contentText: The narration or content for that scene.
+
+Make the tone engaging, visually descriptive, and completely safe for all audiences.
+Output ONLY a JSON array of scenes with no extra text before or after.`;
 
     const result = await geminiModel.generateContent(prompt);
     const textResponse = await result.response.text();
