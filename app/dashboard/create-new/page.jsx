@@ -19,6 +19,19 @@ const CreateNew = () => {
     setFormData((prev) => ({ ...prev, [fieldName]: fieldValue }));
   };
 
+
+  const generateSceneImage = async(prompt,sceneIndex) => {
+    try{
+      const { data } = await axios.post("api/generate-image" , {prompt});
+      if(data.error) throw new Error(data.error);
+      console.log(`Generated image for scene ${sceneIndex+1}:`, data.imageUrl);
+      return data.imageUrl;
+    }catch(error){
+      console.log(`Error getting image for scene ${sceneIndex+1}`,error);
+      return null;
+    }
+  }
+
   //Function that handles Caption generation needs audio url which is recieved from firebase
   const getCaptionFile = async (audioUrl , sceneIndex) => {
     console.log(`Fetching captions for scene ${sceneIndex + 1} →`, audioUrl);
@@ -44,15 +57,18 @@ const CreateNew = () => {
       if (data.error) throw new Error(data.error);
       console.log("Audio generation complete. Results:", data.audioResults);
       const audioResults = data.audioResults;
+
       const updatedScenes = [];
 
       for (let i = 0; i < videoScriptData.length; i++) {
         const scene = videoScriptData[i];
         const audioUrl = audioResults[i]?.audioUrl || null;
-
-        console.log(`[Scene ${i + 1}] Audio URL:`, audioUrl)
-
         const audioBase64 = audioResults[i]?.audioContent || null;
+
+        console.log(`[Scene ${i + 1}] Audio URL:`, audioUrl);
+
+        const imageUrl = await generateSceneImage(scene.imagePrompt,i);
+        console.log(`[Scene ${i + 1}] Image URL:`, imageUrl);
 
         const captions = audioUrl ? await getCaptionFile(audioUrl,i) : [];
 
@@ -61,10 +77,11 @@ const CreateNew = () => {
           audioUrl,
           audioBase64,
           captions,
+          imageUrl
         });
       }
 
-      console.log("[Final Combined Data] Scenes with audio + captions:", updatedScenes);
+      console.log("[Final Combined Data] Scenes with audio + captions + images:", updatedScenes);
 
       setVideoData(updatedScenes);
     } catch (error) {
@@ -116,7 +133,7 @@ const CreateNew = () => {
 
       <CustomLoading loading={loading} />
 
-      {videoData.length > 0 && (
+      {/* {videoData.length > 0 && (
         <div className="mt-10">
           {videoData.map((scene, index) => (
             <div key={index} className="mb-6 p-4 border rounded">
@@ -139,7 +156,45 @@ const CreateNew = () => {
             </div>
           ))}
         </div>
-      )}
+      )} */}
+
+{videoData.length > 0 && (
+  <div className="mt-10">
+    {videoData.map((scene, index) => (
+      <div key={index} className="mb-6 p-4 border rounded">
+        <p><strong>Scene {index + 1}:</strong> {scene.contentText}</p>
+
+        {/* Show AI-generated image */}
+        {scene.imageUrl && (
+          <img
+            src={scene.imageUrl}
+            alt={`Scene ${index + 1} image`}
+            className="my-4 rounded-lg max-w-full"
+            loading="lazy"
+          />
+        )}
+
+        {scene.audioUrl && <audio controls src={scene.audioUrl} />}
+
+        <p><em>Image Prompt:</em> {scene.imagePrompt}</p>
+
+        {scene.captions.length > 0 && (
+          <div className="mt-2 p-2 bg-gray-100 rounded">
+            <h4 className="font-semibold mb-1">Captions:</h4>
+            {scene.captions.map((cap, idx) => (
+              <div key={idx} className="text-sm">
+                [{cap.start?.toFixed(2)}s - {cap.end?.toFixed(2)}s] {cap.text}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    ))}
+  </div>
+)}
+
+
+
     </div>
   );
 };

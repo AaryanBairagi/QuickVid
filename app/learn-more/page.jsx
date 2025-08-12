@@ -7,24 +7,6 @@ export default function LearnMorePage() {
 return (
     <div className="min-h-screen bg-gradient-to-br from-[#0d0d0d] via-[#1a1a1a] to-[#0f0f0f] text-white flex flex-col justify-between px-6 py-12">
       {/* Header */}
-        {/* <header className="w-full flex justify-center">
-            <div className="flex items-center space-x-4 py-4">
-            <img
-                src="/logo.png"
-                alt="QuickVid AI Logo"
-                className="h-14 w-14 object-contain rounded-xl shadow-lg border border-cyan-500"
-                loading="lazy"/>
-            <div>
-                <span className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-cyan-400 via-cyan-600 to-cyan-800 bg-clip-text text-transparent animate-gradient-x drop-shadow-md">
-                {/* <span className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-cyan-300 via-cyan-500 to-cyan-700 text-transparent text-shadow-lg bg-clip-text"> */}
-                    {/* QuickVid AI */}
-                {/* </span>
-                <div className="text-white/80 text-base mt-1 font-semibold tracking-wide hover:text-white/50">
-                    From Concept to Video—Seamlessly Crafted by Advanced AI 
-                </div>               
-            </div>
-        </div>
-        </header> */} 
         <header className="w-full flex justify-center">
             <div className="flex flex-col items-center py-2">
                 <div className="flex items-center space-x-2">
@@ -38,7 +20,7 @@ return (
                         QuickVid
                     </span>
                 </div>
-                <div className="text-white/80 text-base mt-2 font-semibold tracking-wide text-center hover:text-white/50">
+                <div className="text-white/80 text-base mt-2 mb-3.5 font-semibold tracking-wide text-center hover:text-white/50">
                     From Concept to Video—Seamlessly Crafted by Advanced AI 
                 </div>
             </div>
@@ -46,8 +28,10 @@ return (
 
 
         <main className="flex-grow flex justify-center items-center">
-        <Card className="max-w-4xl w-full bg-gradient-to-r from-purple-500/10 to-cyan-500/10
-                        border border-white/10 shadow-lg rounded-2xl transition-all duration-300 hover:scale-[1.01] backdrop-blur-md">
+            <Card className="max-w-4xl w-full bg-gradient-to-r from-purple-500/10 to-cyan-500/10
+                border border-white/10 shadow-lg rounded-2xl transition-shadow duration-300
+                hover:shadow-[0_0_20px_5px_rgb(16,185,129)] backdrop-blur-sm">
+
             <CardContent className="p-10 space-y-9">
 
             {/* Project Intro */}
@@ -171,27 +155,6 @@ return (
             &copy; {new Date().getFullYear()} QuickVid AI &nbsp;|&nbsp; v-1.0
         </div>
     </footer>
-
-
-        {/* <footer className="mt-12 text-center text-white/70 text-sm border-t border-white/10 pt-6">
-            <p className="mb-2">Made with <span className="text-red-400">❤️</span> by Aaryan Bairagi &amp; Tanmay Chandgude</p>
-            <div className="flex justify-center space-x-6 mb-2">
-            <a 
-                href="https://github.com/AaryanBairagi/QuickVid"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Project GitHub"
-                className="hover:text-cyan-400 transition-colors"
-            >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" >
-                <path d="M12 0C5.37 0 0 5.37 0 12a12 12 0 0 0 8.21 11.43c.6.11.82-.26.82-.58 0-.29-.01-1.04-.02-2.05-3.34.73-4.04-1.61-4.04-1.61C4.82 18.73 4.18 18.5 4.18 18.5c-1.09-.74.08-.73.08-.73 1.2.08 1.83 1.23 1.83 1.23 1.07 1.82 2.8 1.3 3.49.99.11-.77.41-1.3.75-1.6-2.67-.3-5.47-1.34-5.47-5.96 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.65 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.63-2.81 5.66-5.49 5.95.42.36.8 1.09.8 2.2 0 1.6-.02 2.89-.02 3.28 0 .32.21.7.82.58A12 12 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
-            </svg> <span className="text-white/80">GitHub </span>
-            </a>
-        </div>
-        <div>
-            &copy; {new Date().getFullYear()} QuickVid AI &nbsp;|&nbsp; v-1.0
-        </div>
-        </footer> */}
     </div>
     );
 }
@@ -201,130 +164,3 @@ return (
 
 
 
-// import Link from "next/link";
-// import { Card, CardContent } from "../../components/ui/card";
-// import { Button } from "../../components/ui/button";
-
-// export default function LearnMorePage() {
-//   return (
-//     <div className="min-h-screen bg-gradient-to-br from-[#0d0d0d] via-[#1a1a1a] to-[#0f0f0f] text-white flex flex-col justify-between px-6 py-12">
-//         <main className="flex-grow flex justify-center items-center">
-//             <Card className="max-w-4xl w-full border border-white/10 bg-white/5 backdrop-blur-md rounded-3xl shadow-xl">
-//             <CardContent className="p-10 space-y-8">
-            
-//             {/* Logo */}
-//             <div className="flex justify-center mb-6">
-//                 <img
-//                     src="/logo.png"
-//                     alt="QuickVid AI Logo"
-//                     className="h-20 w-auto object-contain"
-//                     loading="lazy"
-//                 />
-//             </div>
-
-//             {/* Title */}
-//             <h1 className="text-4xl sm:text-5xl font-extrabold text-center">
-//                 <span className="bg-gradient-to-r from-cyan-300 via-cyan-500 to-cyan-700 text-transparent bg-clip-text">
-//                     Learn More About QuickVid AI
-//                 </span>
-//             </h1>
-
-//             {/* Project Intro */}
-//             <p className="text-white/80 text-lg text-center max-w-2xl mx-auto">
-//                 QuickVid AI transforms your ideas into fully-scripted, narrated, and captioned videos — powered by the latest AI tools for scriptwriting, voice generation, and caption syncing.
-//             </p>
-
-//             {/* Features Section */}
-//             <section>
-//                 <h2 className="text-2xl font-bold mb-4 text-cyan-400">✨ Features</h2>
-//                 <ul className="list-disc pl-6 space-y-2 text-white/80">
-//                     <li>AI-generated video scripts tailored to your topic</li>
-//                     <li>Professional voiceovers via AI text-to-speech</li>
-//                     <li>Automatically generated captions with timestamps</li>
-//                     <li>Scene image prompts for AI art generation</li>
-//                     <li>Future: Full video rendering & export</li>
-//                 </ul>
-//             </section>
-
-//             {/* How it works */}
-//             <section>
-//                 <h2 className="text-2xl font-bold mb-4 text-cyan-400">⚙ How It Works</h2>
-//                 <ol className="list-decimal pl-6 space-y-2 text-white/80">
-//                     <li>Enter your topic, choose style & duration</li>
-//                     <li>AI generates the scenes and narration script</li>
-//                     <li>Voiceover is created with realistic AI speech</li>
-//                     <li>Captions are generated from the audio file</li>
-//                     <li>Preview and (soon) export your video</li>
-//                 </ol>
-//             </section>
-
-//             {/* About Creators */}
-//             <section>
-//                 <h2 className="text-2xl font-bold mb-4 text-cyan-400">👤 About the Creators</h2>
-//                 <p className="text-white/80 mb-1">
-//                     Built with ❤️ by <span className="text-white font-semibold">Aaryan Bairagi</span> and <span className="text-white font-semibold">Tanmay Chandgude</span>, passionate developers combining AI and creativity.
-//                 </p>
-//                 <p className="text-white/80">
-//                 <a
-//                     href="https://github.com/YOUR_GITHUB_USERNAME"
-//                     target="_blank" rel="noopener noreferrer"
-//                     className="underline hover:text-cyan-300 transition-colors"
-//                 >
-//                     GitHub Profile
-//                 </a>{" "} |{" "}
-//                 <a
-//                     href="https://github.com/YOUR_GITHUB_USERNAME/QuickVid"
-//                     target="_blank" rel="noopener noreferrer"
-//                     className="underline hover:text-cyan-300 transition-colors"
-//                 >
-//                     Project Repository
-//                 </a>
-//                 </p>
-//             </section>
-
-//             {/* Call to Action */}
-//             <div className="flex justify-center pt-6">
-//                 <Button asChild className="bg-gradient-to-r from-cyan-400 to-cyan-700 px-6 py-3 text-white font-semibold rounded-full shadow-md hover:scale-105 transition-transform">
-//                     <Link href="/dashboard">🚀 Try QuickVid AI Now</Link>
-//                 </Button>
-//             </div>
-
-//             </CardContent>
-//         </Card>
-//         </main>
-
-//       {/* Footer */}
-//       <footer className="mt-12 text-center text-white/70 text-sm border-t border-white/10 pt-6">
-//         <p className="mb-2">Made with ❤️ by Aaryan Bairagi &amp; Tanmay Chandgude</p>
-//         <div className="flex justify-center space-x-6">
-//           {/* Example GitHub icon placeholders, replace with your icons/components */}
-//           <a 
-//             href="https://github.com/YOUR_GITHUB_USERNAME" 
-//             target="_blank" 
-//             rel="noopener noreferrer"
-//             aria-label="Aaryan Bairagi GitHub"
-//             className="hover:text-cyan-400 transition-colors"
-//           >
-//             {/* You can replace this with an actual SVG icon or Icon component */}
-//             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" >
-//               <path d="M12 0C5.37 0 0 5.37 0 12a12 12 0 0 0 8.21 11.43c.6.11.82-.26.82-.58 0-.29-.01-1.04-.02-2.05-3.34.73-4.04-1.61-4.04-1.61C4.82 18.73 4.18 18.5 4.18 18.5c-1.09-.74.08-.73.08-.73 1.2.08 1.83 1.23 1.83 1.23 1.07 1.82 2.8 1.3 3.49.99.11-.77.41-1.3.75-1.6-2.67-.3-5.47-1.34-5.47-5.96 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.65 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.63-2.81 5.66-5.49 5.95.42.36.8 1.09.8 2.2 0 1.6-.02 2.89-.02 3.28 0 .32.21.7.82.58A12 12 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
-//             </svg>
-//           </a>
-
-//           <a 
-//             href="https://github.com/YOUR_GITHUB_USERNAME/QuickVid" 
-//             target="_blank" 
-//             rel="noopener noreferrer"
-//             aria-label="QuickVid Project GitHub"
-//             className="hover:text-cyan-400 transition-colors"
-//           >
-//             {/* Replace with actual icon */}
-//             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" >
-//               <path d="M12 0C5.37 0 0 5.37 0 12a12 12 0 0 0 8.21 11.43c.6.11.82-.26.82-.58 0-.29-.01-1.04-.02-2.05-3.34.73-4.04-1.61-4.04-1.61C4.82 18.73 4.18 18.5 4.18 18.5c-1.09-.74.08-.73.08-.73 1.2.08 1.83 1.23 1.83 1.23 1.07 1.82 2.8 1.3 3.49.99.11-.77.41-1.3.75-1.6-2.67-.3-5.47-1.34-5.47-5.96 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.65 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.63-2.81 5.66-5.49 5.95.42.36.8 1.09.8 2.2 0 1.6-.02 2.89-.02 3.28 0 .32.21.7.82.58A12 12 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
-//             </svg>
-//           </a>
-//         </div>
-//       </footer>
-//     </div>
-//   );
-// }
