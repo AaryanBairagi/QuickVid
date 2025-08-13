@@ -2,11 +2,12 @@
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "../../../lib/utils";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../../../components/ui/tooltip";
-import { Home, Video, Settings, CreditCard, User, Wand2 } from "lucide-react";
+import { Home, Video, Settings, CreditCard, User, Wand2 , HelpCircle , BookOpen , Mail} from "lucide-react";
 import { useUser } from "@clerk/nextjs";
 import { Separator } from "../../../components/ui/separator";
 import { ModeToggle } from "../../../components/global/mode-toggle";
 import Link from "next/link";
+import Image from "next/image";
 
 const SideBar = () => {
   const path = usePathname();
@@ -74,11 +75,11 @@ const SideBar = () => {
         </TooltipProvider>
       </div>
 
-      <Separator className="my-4" />
+      <Separator className="my-4 bg-white/10" />
 
-<div className="flex flex-col items-center gap-6 px-2 py-4">
+    <div className="flex flex-col items-center gap-6 px-2 py-4 mt-10">
       <div className="flex flex-col items-center bg-white/5 dark:bg-[#353346]/30 rounded-full p-3 border border-white/20 shadow-sm">
-        {[Video, Wand2, Settings].map((Icon, i, arr) => (
+        {[BookOpen,HelpCircle,Mail].map((Icon, i, arr) => (
           <div key={i} className="flex flex-col items-center group">
             {/* Icon Button */}
             <button
@@ -99,8 +100,10 @@ const SideBar = () => {
       </div>
     </div>
 
-      <div className="flex flex-col items-center gap-4 text-white mt-20">
-        <ModeToggle className="bg-gray-600 text-black" />
+      <div className="ml-9 mt-20 rounded-md border border-white/20 hover:border-white/60
+              hover:shadow-[0_0_12px_rgba(34,211,238,0.7)] transition-all duration-300
+              cursor-pointer w-[40px] h-[40px] flex items-center justify-center">
+        <Image src="/logo.png" alt="logo" height={40} width={40} className="rounded-md" />
       </div>
 
 

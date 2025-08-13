@@ -1,4 +1,4 @@
-import { pgTable,serial,varchar,boolean,text,jsonb,json} from "drizzle-orm/pg-core"; 
+import { pgTable,serial,varchar,boolean,text,jsonb,timestamp,json} from "drizzle-orm/pg-core"; 
 
 //Creating a SQL database 'users' 
 
@@ -15,11 +15,18 @@ export const UserSettings = pgTable("user_settings", {
     settings: jsonb("settings").notNull(),
 });
 
-export const VideoData = pgTable("videoData",{
-    id:serial('id').primaryKey(),
-    script:json('script').notNull(),
-    audioFileUrl:varchar('audioFileUrl').notNull(),
-    captions:json('captions').notNull(),
-    imageList:varchar('imageList').array(),
-    createdBy:varchar('createdBy').notNull()
+// export const VideoData = pgTable("videoData",{
+//     id:serial('id').primaryKey(),
+//     script:json('script').notNull(),
+//     audioFileUrl:varchar('audioFileUrl').notNull(),
+//     captions:json('captions').notNull(),
+//     imageList:varchar('imageList').array(),
+//     createdBy:varchar('createdBy').notNull()
+// });
+
+export const VideoData = pgTable("videoData", {
+    id: serial("id").primaryKey(),
+    scenes: jsonb("scenes").notNull(), // stores full setVideoData array
+    createdBy: varchar("createdBy").notNull(),
+    createdAt: timestamp("createdAt").defaultNow().notNull()
 });

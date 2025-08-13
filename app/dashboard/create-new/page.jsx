@@ -8,17 +8,38 @@ import { Button } from "../../../components/ui/button";
 import axios from "axios";
 import CustomLoading from "./_components/CustomLoading";
 import { v4 as uuid } from "uuid";
+import PlayerDialog from "../_components/PlayerDialog";
+
 
 const CreateNew = () => {
   const [formdata, setFormData] = useState({});
   const [videoData, setVideoData] = useState([]); 
   const [loading, setLoading] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [isPreviewOpen, setPreviewOpen] = useState(false);
 
   //Function that handles the change in form data in frontend
   const onHandleInputChange = (fieldName, fieldValue) => {
     setFormData((prev) => ({ ...prev, [fieldName]: fieldValue }));
   };
 
+
+  const saveVideoToDB = async (scenes) => {
+    try{
+      setSaving(true);
+      const { data } = await axios.post('/api/save-video',{scenes});
+
+      if(data.error) throw new Error(data.error);
+      console.log("✅ Saved to DB:", data);
+      alert("Video data saved successfully!");
+
+    }catch(error){
+      console.log("❌ Error saving video:", error);
+      alert('Failed to save the video');
+    }finally{
+      setSaving(false);
+    }
+  }
 
   const generateSceneImage = async(prompt,sceneIndex) => {
     try{
@@ -84,6 +105,7 @@ const CreateNew = () => {
       console.log("[Final Combined Data] Scenes with audio + captions + images:", updatedScenes);
 
       setVideoData(updatedScenes);
+      // await saveVideoToDB(updatedScenes);
     } catch (error) {
       console.error("Error generating audio/captions:", error);
       alert(`Error: ${error.message}`);
@@ -124,25 +146,65 @@ const CreateNew = () => {
         <SelectTopic onUserSelect={onHandleInputChange} />
         <SelectStyle onUserSelect={onHandleInputChange} />
         <Duration onUserSelect={onHandleInputChange} />
-        <Button
-          onClick={getVideoScript}
-          disabled={loading}
-          className="mt-10 bg-gradient-to-r from-cyan-500 to-purple-500 text-white px-6 py-3 rounded-lg"
-        >
-          🚀 Create Short Video
-        </Button>
+        <div className="mt-10 flex flex-wrap items-center gap-4">
+          <Button
+            onClick={getVideoScript}
+            disabled={loading}
+            // className="mt-10 bg-gradient-to-r from-cyan-500 to-purple-500 text-white px-6 py-3 rounded-lg"
+            className={`
+                        px-6 py-3
+                        rounded-lg
+                        font-semibold
+                        flex items-center justify-center gap-2
+                        bg-gradient-to-r from-cyan-500 to-purple-500
+                        hover:from-cyan-400 hover:to-purple-400
+                        text-white
+                        shadow-[0_0_15px_rgba(67,56,202,0.7)]
+                        hover:shadow-[0_0_25px_rgba(67,56,202,0.9)]
+                        transition-all duration-300
+                        disabled:opacity-50 disabled:cursor-not-allowed`}
+          >
+            🚀 Create Short Video
+          </Button>
+
+          <Button
+            onClick={() => setPreviewOpen(true)}
+            disabled={videoData.length === 0}
+            className={`
+                      px-6 py-3
+                      rounded-lg
+                      font-semibold
+                      flex items-center justify-center gap-2
+                      bg-gradient-to-r from-cyan-500 to-purple-500
+                      hover:from-cyan-400 hover:to-purple-400
+                      text-white
+                      shadow-[0_0_15px_rgba(67,56,202,0.7)]
+                      hover:shadow-[0_0_25px_rgba(67,56,202,0.9)]
+                      transition-all duration-300
+                      disabled:opacity-50 disabled:cursor-not-allowed
+                      `} >
+            🎬 Preview Video
+          </Button>
+        </div>
       </div>
 
       <CustomLoading loading={loading} />
 
-      {videoData.length > 0 && (
+      {/* PlayerDialog for Remotion Video Preview */}
+      <PlayerDialog
+        isOpen={isPreviewOpen}
+        onClose={() => setPreviewOpen(false)}
+        scenes={videoData}
+      />
+
+      {/* {videoData.length > 0 && (
         <div className="mt-10">
           {videoData.map((scene, index) => (
           <div key={index} className="mb-6 p-4 border rounded">
           <p><strong>Scene {index + 1}:</strong> {scene.contentText}</p>
 
           {/* Show AI-generated image */}
-          {scene.imageUrl && (
+          {/* {scene.imageUrl && (
             <img
             src={scene.imageUrl}
             alt={`Scene ${index + 1} image`}
@@ -153,8 +215,8 @@ const CreateNew = () => {
 
           {scene.audioUrl && <audio controls src={scene.audioUrl} />}
 
-          <p><em>Image Prompt:</em> {scene.imagePrompt}</p>
-
+          <p><em>Image Prompt:</em> {scene.imagePrompt}</p> */}
+{/* 
           {scene.captions.length > 0 && (
             <div className="mt-2 p-2 bg-gray-100 rounded">
               <h4 className="font-semibold mb-1">Captions:</h4>
@@ -168,7 +230,7 @@ const CreateNew = () => {
           </div>
           ))}
         </div>
-      )}
+      )} */} 
 
     </div>
   );
