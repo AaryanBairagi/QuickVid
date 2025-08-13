@@ -114,7 +114,6 @@ return (
 
             {/* Call to Action */}
             <div className="flex justify-center pt-4">
-                    {/* <Link href="/">🚀 Try QuickVid AI Now</Link> */}
                     <Link href="/">
                         <button
                             className="flex items-center gap-2 px-5 py-2 rounded-full 

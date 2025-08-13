@@ -18,7 +18,7 @@ const Header = () => {
           placeholder="Search your videos..."
           className="pl-10 bg-white/5 border-white/10 text-white placeholder:text-white/50 
             focus:border-cyan-400 focus:ring-0 
-            hover:bg-white/20 hover:border-cyan-400 hover:scale-105 hover:shadow-md transition-transform transition-colors duration-300"
+            hover:bg-white/20 hover:border-cyan-400 hover:scale-105 hover:shadow-md transition-colors duration-300"
 
         />
       </div>

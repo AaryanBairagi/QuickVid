@@ -23,6 +23,33 @@ const CreateNew = () => {
     setFormData((prev) => ({ ...prev, [fieldName]: fieldValue }));
   };
 
+  const preloadAllImages = (scenes) => {
+  return Promise.all(
+    scenes.map(scene => {
+      return new Promise((resolve) => {
+        if (!scene.imageUrl) resolve();
+          const img = new Image();
+          img.src = scene.imageUrl;
+          img.onload = () => resolve();
+          img.onerror = () => resolve(); // Resolve even if error to avoid blocking
+        });
+      })
+    );
+  };
+
+  const onPreviewClick = async () => {
+  setLoading(true);
+  try {
+    await preloadAllImages(videoData);
+      setLoading(false);
+      setPreviewOpen(true);
+    } catch {
+      setLoading(false);
+      alert("Failed to load images for preview.");
+    }
+  };
+
+
 
   const saveVideoToDB = async (scenes) => {
     try{
@@ -105,7 +132,7 @@ const CreateNew = () => {
       console.log("[Final Combined Data] Scenes with audio + captions + images:", updatedScenes);
 
       setVideoData(updatedScenes);
-      // await saveVideoToDB(updatedScenes);
+      await saveVideoToDB(updatedScenes);
     } catch (error) {
       console.error("Error generating audio/captions:", error);
       alert(`Error: ${error.message}`);
@@ -168,8 +195,11 @@ const CreateNew = () => {
           </Button>
 
           <Button
-            onClick={() => setPreviewOpen(true)}
-            disabled={videoData.length === 0}
+            // onClick={() => setPreviewOpen(true)}
+            // disabled={videoData.length === 0}
+            
+            onClick={onPreviewClick}
+            disabled={videoData.length === 0 || loading}
             className={`
                       px-6 py-3
                       rounded-lg

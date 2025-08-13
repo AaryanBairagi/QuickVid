@@ -12,18 +12,37 @@ export async function POST(req) {
         );
     }
 
-const prompt = `Write a video script for a short ${duration} video on the topic "${topic}".
-                The video should follow a "${imageStyle}" style. Break the video down into multiple scenes.
-                For each scene, provide the following in JSON format:
-                - imagePrompt: A visual prompt to generate a realistic AI image for the scene. 
-                IMPORTANT: The image prompt must be 100% safe for AI generation:
-                • No sexual, violent, gory, hateful, or unsafe content.
-                • Use neutral and family-friendly language.
-                • Replace unsafe concepts with safe, artistic alternatives.
-                - contentText: The narration or content for that scene.
+// const prompt = `Write a video script for a short ${duration} video on the topic "${topic}".
+//                 The video should follow a "${imageStyle}" style. Break the video down into multiple scenes.
+//                 For each scene, provide the following in JSON format:
+//                 - imagePrompt: A visual prompt to generate a realistic AI image for the scene. 
+//                 IMPORTANT: The image prompt must be 100% safe for AI generation:
+//                 • No sexual, violent, gory, hateful, or unsafe content.
+//                 • Use neutral and family-friendly language.
+//                 • Replace unsafe concepts with safe, artistic alternatives.
+//                 - contentText: The narration or content for that scene.
 
-Make the tone engaging, visually descriptive, and completely safe for all audiences.
-Output ONLY a JSON array of scenes with no extra text before or after.`;
+// Make the tone engaging, visually descriptive, and completely safe for all audiences.
+// Output ONLY a JSON array of scenes with no extra text before or after.`;
+
+const prompt = `Write a video script for a short ${duration} video on the topic "${topic}".  
+                The video should follow a "${imageStyle}" style. Break the video down into multiple scenes.  
+
+                Each scene should have:  
+                - imagePrompt: A visual prompt to generate a realistic AI image for the scene.  
+                - contentText: The narration or content for that scene.  
+
+                    IMPORTANT:  
+                - The image prompt must be 100% safe for AI generation:  
+                • No sexual, violent, gory, hateful, or unsafe content.  
+                • Use neutral and family-friendly language.  
+                • Replace unsafe concepts with safe, artistic alternatives.  
+                
+                - When the topic involves political figures or famous celebrities, include recognizable traits, settings, and respectful portrayals ensuring adherence to ethical guidelines and neutrality.  
+
+                Make the tone engaging, visually descriptive, and suitable for all audiences.  
+                Output ONLY a JSON array of scenes with no extra text before or after.`;
+
 
     const result = await geminiModel.generateContent(prompt);
     const textResponse = await result.response.text();

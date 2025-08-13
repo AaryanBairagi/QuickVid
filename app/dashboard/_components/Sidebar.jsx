@@ -21,6 +21,12 @@ const SideBar = () => {
     { id: 4, name: "Settings", icon: Settings, path: "/dashboard/settings" },
   ];
 
+  const links = [
+    { icon: BookOpen, href: "/dashboard/scriptsFolder" },
+    { icon: HelpCircle, href: "/dashboard/help" },
+    { icon: Mail, href: "/dashboard/contact" },
+  ];
+
   return (
     <div className="min-h-screen bg-white/5 backdrop-blur-md border-r border-white/10 shadow-lg flex flex-col justify-between py-4">
       {/* Scrollable Menu */}
@@ -79,18 +85,20 @@ const SideBar = () => {
 
     <div className="flex flex-col items-center gap-6 px-2 py-4 mt-10">
       <div className="flex flex-col items-center bg-white/5 dark:bg-[#353346]/30 rounded-full p-3 border border-white/20 shadow-sm">
-        {[BookOpen,HelpCircle,Mail].map((Icon, i, arr) => (
+        {links.map(({icon: Icon , href} , i ) => (
           <div key={i} className="flex flex-col items-center group">
             {/* Icon Button */}
-            <button
+            <Link
+              href={href}
               className="p-3 rounded-full transition-all duration-300 
                         hover:bg-cyan-500/20 hover:text-cyan-300 
-                        text-white/80 relative">
+                        text-white/80 relative"
+            >
               <Icon size={20} />
-            </button>
+            </Link>
 
             {/* Connector Line with Glow */}
-            {i < arr.length - 1 && (
+            {i < links.length - 1 && (
               <div className="w-px h-6 bg-white/20 dark:bg-white/30 
                               group-hover:bg-cyan-400 group-hover:shadow-[0_0_8px_rgba(34,211,238,0.7)] 
                               transition-all duration-300" />
