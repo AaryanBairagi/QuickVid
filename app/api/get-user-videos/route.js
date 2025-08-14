@@ -4,27 +4,64 @@ import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 import { db } from "../../../configs/db";
 
+export async function GET(req) {
+try {
+    const { userId } = getAuth(req);
+    console.log("Fetching videos for Clerk User:", userId);
 
-export async function GET(req){
-    try{
-        const {userId} = getAuth(req);
-        console.log("Fetching videos for Clerk User:" , userId);
+    if (!userId) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
 
-        if(!userId){
-            return NextResponse.json({error:error.message},{status:401});
-        }
+    const user = await currentUser();
+    const createdBy =
+        user?.fullName ||
+        user?.username ||
+        user?.primaryEmailAddress?.emailAddress ||
+        "Unknown User";
 
-        const user = await currentUser();
-        const createdBy =   user?.fullName || 
-                            user?.username || 
-                            user?.primaryEmailAddress?.emailAddress || 
-                            "Unknown User";
-        
-        const videos = await db.select().from(VideoData).where(eq(VideoData.createdBy,createdBy));
+    const videos = await db
+        .select({
+            id: VideoData.id,
+            scenes: VideoData.scenes,
+            createdBy: VideoData.createdBy,
+            createdAt: VideoData.createdAt,
+            videoUrl: VideoData.videoUrl // ✅ include new field
+        })
+        .from(VideoData)
+        .where(eq(VideoData.createdBy, createdBy));
 
-        return NextResponse.json({ success:true , videos });
-    }catch(error){
-        console.log("Error fetching the user videos : " , error);
-        return NextResponse.json({error:error.message},{status:500});
+    return NextResponse.json({ success: true, videos });
+    } catch (error) {
+        console.log("Error fetching the user videos:", error);
+        return NextResponse.json({ error: error.message }, { status: 500 });
     }
 }
+
+
+
+
+
+// export async function GET(req){
+//     try{
+//         const {userId} = getAuth(req);
+//         console.log("Fetching videos for Clerk User:" , userId);
+
+//         if(!userId){
+//             return NextResponse.json({error:error.message},{status:401});
+//         }
+
+//         const user = await currentUser();
+//         const createdBy =   user?.fullName || 
+//                             user?.username || 
+//                             user?.primaryEmailAddress?.emailAddress || 
+//                             "Unknown User";
+        
+//         const videos = await db.select().from(VideoData).where(eq(VideoData.createdBy,createdBy));
+
+//         return NextResponse.json({ success:true , videos });
+//     }catch(error){
+//         console.log("Error fetching the user videos : " , error);
+//         return NextResponse.json({error:error.message},{status:500});
+//     }
+// }

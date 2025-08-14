@@ -26,6 +26,7 @@
     "@radix-ui/react-switch": "^1.2.5",
     "@radix-ui/react-tooltip": "^1.2.7",
     "@remotion/cli": "4.0.332",
+    "@stripe/stripe-js": "^7.8.0",
     "assemblyai": "^4.15.0",
     "axios": "^1.11.0",
     "class-variance-authority": "^0.7.1",
@@ -41,6 +42,7 @@
     "react-dom": "19.1.0",
     "remotion": "4.0.332",
     "replicate": "^1.0.1",
+    "stripe": "^18.4.0",
     "tailwind-merge": "^3.3.1",
     "uuid": "^11.1.0"
   },
