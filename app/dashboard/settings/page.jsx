@@ -5,7 +5,7 @@ import { Label } from "../../../components/ui/label";
 import { useUser } from "@clerk/nextjs";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { Loader2 } from "lucide-react";
+import { Loader } from "lucide-react";
 import { Button } from "../../../components/ui/button";
 
 export default function SettingsPage() {
@@ -69,7 +69,7 @@ export default function SettingsPage() {
     if (loading) {
         return (
         <div className="flex items-center justify-center h-full p-8">
-            <Loader2 className="h-6 w-6 animate-spin text-cyan-400" />
+            <Loader className="h-6 w-6 animate-spin text-cyan-400" />
             <span className="ml-3 text-white/80">Loading settings...</span>
         </div>
     );

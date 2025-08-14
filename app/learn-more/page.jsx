@@ -74,8 +74,11 @@ return (
                     <li>Next.js (Frontend and API routes)</li>
                     <li>Firebase (Audio/image storage, authentication)</li>
                     <li>Neon DB (PostgreSQL, scalable database)</li>
+                    <li>Stripe (Payments, subscriptions, and billing)</li>
+                    <li>Clerk (User authentication and management)</li>
                     <li>Google Text-to-Speech (AI voiceover)</li>
                     <li>AssemblyAI (Captioning and transcription)</li>
+                    <li>Remotion.js (Programmatic video rendering and editing)</li>
                 </ul>
             </section>
 

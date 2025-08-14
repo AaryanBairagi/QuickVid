@@ -33,22 +33,28 @@ const Header = () => {
       {/* CENTER: Links */}
       <div className="flex items-center justify-center gap-15 flex-1">
         <Link
-          href="/help"
+          href="/dashboard/help"
           className="text-sm font-semibold text-white/70 underline underline-offset-4 decoration-cyan-400 hover:text-cyan-400 hover:decoration-purple-400 transition-colors duration-200"
         >
           Help & FAQ
         </Link>
         <Link
-          href="/contact"
+          href="/dashboard/contact"
           className="text-sm text-white/70 underline underline-offset-4 decoration-cyan-400 hover:text-cyan-400 hover:decoration-purple-400 transition-colors duration-200"
         >
           Contact Us
         </Link>
         <Link
-          href="/scripts"
+          href="/dashboard/scriptsFolder"
           className="text-sm text-white/70 underline underline-offset-4 decoration-cyan-400 hover:text-cyan-400 hover:decoration-purple-400 transition-colors duration-200"
         >
           Scripts
+        </Link>
+        <Link
+          href="/learn-more"
+          className="text-sm text-white/70 underline underline-offset-4 decoration-cyan-400 hover:text-cyan-400 hover:decoration-purple-400 transition-colors duration-200"
+        >
+          About Us
         </Link>
       </div>
 
