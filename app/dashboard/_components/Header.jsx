@@ -40,19 +40,19 @@ const Header = () => {
         </Link>
         <Link
           href="/dashboard/contact"
-          className="text-sm text-white/70 underline underline-offset-4 decoration-cyan-400 hover:text-cyan-400 hover:decoration-purple-400 transition-colors duration-200"
+          className="text-sm font-semibold text-white/70 underline underline-offset-4 decoration-cyan-400 hover:text-cyan-400 hover:decoration-purple-400 transition-colors duration-200"
         >
           Contact Us
         </Link>
         <Link
           href="/dashboard/scriptsFolder"
-          className="text-sm text-white/70 underline underline-offset-4 decoration-cyan-400 hover:text-cyan-400 hover:decoration-purple-400 transition-colors duration-200"
+          className="text-sm font-semibold text-white/70 underline underline-offset-4 decoration-cyan-400 hover:text-cyan-400 hover:decoration-purple-400 transition-colors duration-200"
         >
           Scripts
         </Link>
         <Link
           href="/learn-more"
-          className="text-sm text-white/70 underline underline-offset-4 decoration-cyan-400 hover:text-cyan-400 hover:decoration-purple-400 transition-colors duration-200"
+          className="text-sm font-semibold text-white/70 underline underline-offset-4 decoration-cyan-400 hover:text-cyan-400 hover:decoration-purple-400 transition-colors duration-200"
         >
           About Us
         </Link>
@@ -60,7 +60,7 @@ const Header = () => {
 
       {/* RIGHT: Username and avatar */}
       <div className="flex items-center gap-3 flex-shrink-0">
-        <span className="text-sm text-white/70 hover:text-cyan-400 hidden sm:block">
+        <span className="text-sm font-semibold text-white/70 hover:text-cyan-400 hidden sm:block">
           {user?.fullName || "Guest"}
         </span>
         <img
