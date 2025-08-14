@@ -1,4 +1,4 @@
-import { pgTable,serial,varchar,boolean,text,jsonb,timestamp,json} from "drizzle-orm/pg-core"; 
+import { pgTable,serial,varchar,boolean,text,jsonb,timestamp,json,integer} from "drizzle-orm/pg-core"; 
 
 //Creating a SQL database 'users' 
 
@@ -8,8 +8,9 @@ export const Users = pgTable('users' , {
     email:varchar('email').notNull(),
     imageUrl:varchar('imageUrl'),
     subscription:boolean('subscription').default(false),
-    // tier: varchar("tier", { length: 50 }).default("Basic").notNull(),
-    // credits: integer("credits").default(0).notNull(),
+    tier: varchar("tier", { length: 50 }).default("Basic").notNull(),
+    credits: integer("credits").default(0).notNull(),
+    stripeCustomerId: varchar("stripeCustomerId", { length: 255 }),
 });
 
 export const UserSettings = pgTable("user_settings", {
