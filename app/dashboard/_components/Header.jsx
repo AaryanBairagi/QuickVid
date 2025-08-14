@@ -36,7 +36,7 @@ const Header = () => {
           href="/help"
           className="text-sm font-semibold text-white/70 underline underline-offset-4 decoration-cyan-400 hover:text-cyan-400 hover:decoration-purple-400 transition-colors duration-200"
         >
-          Help
+          Help & FAQ
         </Link>
         <Link
           href="/contact"

@@ -28,7 +28,7 @@ const SideBar = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white/5 backdrop-blur-md border-r border-white/10 shadow-lg flex flex-col justify-between py-4">
+    <div className="min-h-screen bg-gradient-to-br from-[#0a0a0a] via-[#121212] to-[#0c0c0c] border-r border-white/10 shadow-lg flex flex-col justify-between py-4">
       {/* Scrollable Menu */}
       <h4 className="text-white/40 font-semibold text-xl text-center hover:text-white/80 mt-1.5 border-white/10"><Link href="/">quickVid.</Link></h4>
       <Separator className={"mt-4.5 bg-white/10"} />
