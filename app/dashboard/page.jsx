@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "../../components/ui/button";
 import EmptyState from "./_components/EmptyState";
 import Link from "next/link";
-import { Sparkles, Play , Loader } from "lucide-react";
+import { Sparkles, Play , Loader , Trash2 } from "lucide-react";
 import axios from "axios";
 import PlayerDialog from "./_components/PlayerDialog"; 
 
@@ -93,7 +93,18 @@ const handleSaveVideo = async (video) => {
 //   }
 // };
 
-  return (
+const handleDeleteVideo = async (videoId) => {
+  if (!confirm("Are you sure you want to delete this video?")) return;
+  try {
+    await axios.delete("/api/delete-video", { data: { videoId } , withCredentials: true });
+    setVideoList((prev) => prev.filter((v) => v.id !== videoId));
+  } catch (err) {
+    console.error("Error deleting video:", err);
+    alert("Failed to delete video.");
+  }
+};
+
+return (
     <div className="min-h-screen text-white p-6 space-y-8">
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -112,14 +123,6 @@ const handleSaveVideo = async (video) => {
               Create Short
             </Button>
           </Link>
-
-          {/* <Link href="/dashboard/create-new">
-            <Button className="rounded-full border border-white/20 bg-white/5
-              hover:bg-white/10 hover:shadow-[0_0_10px_rgba(34,211,238,0.7)]
-              text-white transition-all duration-300">
-              + Create New
-            </Button>
-          </Link> */}
         </div>
       </div>
 
@@ -177,6 +180,14 @@ const handleSaveVideo = async (video) => {
                   >
                   💾 Save Video                  
                   </button>
+
+                  <Button
+                    variant="destructive"
+                    onClick={() => handleDeleteVideo(video.id)}
+                    className="flex-1 flex items-center justify-center gap-2 text-sm">
+                      <Trash2 size={16} />
+                      Delete
+                  </Button>
                 </div>
               </div>
             </div>
