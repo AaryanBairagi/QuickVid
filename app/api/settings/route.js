@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { auth } from "@clerk/nextjs/server";
+import { getAuth } from "@clerk/nextjs/server";
 import { Pool } from "pg";
 
 // Connect to Neon DB
@@ -9,9 +9,9 @@ const pool = new Pool({
 });
 
 // GET user settings
-export async function GET() {
+export async function GET(req) {
 try {
-    const { userId } = auth();
+    const { userId } = getAuth(req);
     if (!userId) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -44,7 +44,7 @@ try {
 // POST update user settings
 export async function POST(req) {
 try {
-    const { userId } = auth();
+    const { userId } = getAuth(req);
     if (!userId) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
