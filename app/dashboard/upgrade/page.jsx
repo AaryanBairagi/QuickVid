@@ -62,6 +62,27 @@ export default function UpgradePage() {
     fetchPlan();
     }, []);
 
+    const handleUpgrade = async (planName) => {
+    try {
+        const res = await fetch("/api/stripe-checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ plan: planName }),
+        credentials: "include",
+        });
+    const data = await res.json();
+        if (data.url) {
+            window.location.href = data.url; // Redirects to Stripe Checkout
+        } else {
+            alert(data.error || "Could not start checkout session.");
+        }
+        } catch (err) {
+            alert("An error occurred while starting your upgrade.");
+            console.error(err);
+        }
+    };
+
+
 return (
     <div className="p-8 max-w-6xl mx-auto">
         <h1 className="text-4xl font-extrabold mb-10 text-white/90">
@@ -121,6 +142,7 @@ return (
 
               {/* Button */}
                 <Button
+                    onClick={() => !isCurrent && handleUpgrade(plan.name)}
                     disabled={isCurrent}
                     className={`
                     w-full text-lg font-semibold
