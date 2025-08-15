@@ -23,6 +23,19 @@ const CreateNew = () => {
     setFormData((prev) => ({ ...prev, [fieldName]: fieldValue }));
   };
 
+  const deductCredits = async()=>{
+    try{
+      await axios.post('/api/update-user-credits',
+        {creditsUsed:1}, 
+        {withCredentials:true}
+      );
+    window.dispatchEvent(new Event("credits-updated"));
+    }catch(error){
+      console.log('Error Deducting the credits: ' , error);
+    }
+  }
+
+
   const preloadAllImages = (scenes) => {
   return Promise.all(
     scenes.map(scene => {
@@ -133,6 +146,7 @@ const CreateNew = () => {
 
       setVideoData(updatedScenes);
       await saveVideoToDB(updatedScenes);
+      await deductCredits();
     } catch (error) {
       console.error("Error generating audio/captions:", error);
       alert(`Error: ${error.message}`);

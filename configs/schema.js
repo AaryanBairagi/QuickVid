@@ -9,7 +9,8 @@ export const Users = pgTable('users' , {
     imageUrl:varchar('imageUrl'),
     subscription:boolean('subscription').default(false),
     tier: varchar("tier", { length: 50 }).default("Basic").notNull(),
-    credits: integer("credits").default(0).notNull(),
+    credits: integer("credits").default(10).notNull(),
+    credits_remaining: integer("credits_remaining").default(10).notNull(),
     stripeCustomerId: varchar("stripeCustomerId", { length: 255 }),
 });
 
