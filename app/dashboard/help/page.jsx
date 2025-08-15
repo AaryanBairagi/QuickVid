@@ -60,7 +60,7 @@ export default function HelpPage() {
             Contact
           </h2>
           <p className="text-base leading-relaxed max-w-prose">
-            Need more help? Visit the <a href="/contact" className="text-purple-400 underline hover:text-purple-300 transition">Contact</a> page to send a support message.
+            Need more help? Visit the <a href="/dashboard/contact" className="text-purple-400 underline hover:text-purple-300 transition">Contact</a> page to send a support message.
           </p>
         </section>
       </div>
